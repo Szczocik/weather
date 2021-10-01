@@ -17,3 +17,7 @@ class WeatherForecast:
         r = requests.get(request_url)
         content = r.json()
         return content
+
+    def get_temperature(self):
+        avg_temp = self.data['forecast']['forecastday'][0]['day']['avgtemp_c']
+        return avg_temp
