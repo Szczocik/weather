@@ -21,3 +21,7 @@ class WeatherForecast:
     def get_temperature(self):
         avg_temp = self.data['forecast']['forecastday'][0]['day']['avgtemp_c']
         return avg_temp
+
+    def get_rain_info(self):
+        totalprecip_mm = float(self.data['forecast']['forecastday'][0]['day']['totalprecip_mm'])
+        return self.get_rain_chance(totalprecip_mm)
