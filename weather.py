@@ -33,5 +33,6 @@ class WeatherForecast:
             return "Nie będzie padać"
         return "Nie wiem!"
 
+
 weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
 print(weather.get_rain_info())
