@@ -11,3 +11,9 @@ class WeatherForecast:
         self.api_key = api_key
         self.date = date
         self.data = self.get_data()
+
+    def get_data(self):
+        request_url = f'{self.BASE_URL}?key={self.api_key}&q=Warsaw&dt={self.date}'
+        r = requests.get(request_url)
+        content = r.json()
+        return content
