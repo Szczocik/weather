@@ -1,16 +1,13 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from datetime import datetime
+import requests
+import sys
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+class WeatherForecast:
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    BASE_URL = 'https://weatherapi-com.p.rapidapi.com/history.json'
+
+    def __init__(self, api_key, date=str(datetime.today().date())):
+        self.api_key = api_key
+        self.date = date
+        self.data = self.get_data()
