@@ -43,11 +43,14 @@ with open(f'weather_history.txt', 'r') as file:
         data = [position_1, position_2.replace('\n', '')]
 
         base_weather.append(data)
-        print(base_weather)
+        # print(base_weather)
 
 
 weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
+print(weather.get_rain_info())
+
+with open(f'weather_history.txt', 'a') as file:
+    for line in base_weather:
+        base_weather.write(f'{line[0]}' + ';' + f'{line[1]}' + ';' + '\n')
 
 
-
-# print(weather.get_rain_info())
