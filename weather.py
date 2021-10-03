@@ -53,4 +53,3 @@ with open(f'weather_history.txt', 'a') as file:
     for line in base_weather:
         file.write(f'{line[0]}' + ';' + f'{line[1]}' + '\n')
 
-

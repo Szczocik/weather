@@ -2,10 +2,11 @@ from datetime import datetime
 import requests
 import sys
 
+base_weather = []
 
 class WeatherForecast:
 
-    BASE_URL = 'https://weatherapi-com.p.rapidapi.com/history.json'
+    BASE_URL = 'http://api.weatherapi.com/v1/history.json'
 
     def __init__(self, api_key, date=str(datetime.today().date())):
         self.api_key = api_key
@@ -33,6 +34,25 @@ class WeatherForecast:
             return "Nie będzie padać"
         return "Nie wiem!"
 
+with open(f'weather_history.txt', 'r') as file:
+    for line in file:
+        splitted_line = line.split(';')
+        position_1 = splitted_line[0]
+        position_2 = splitted_line[1]
+
+        data = [position_1, position_2.replace('\n', '')]
+
+        base_weather.append(data)
+        print(base_weather)
 
 weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
-print(weather.get_rain_info())
+# print(weather.get_rain_info())
+
+date = sys.argv[2]
+while True:
+    if date == base_weather[0][0]:
+        print(date)
+        break
+    else:
+        print(weather.get_rain_info())
+        break
