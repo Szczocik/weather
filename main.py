@@ -57,11 +57,11 @@ while True:
         break
     else:
         print(weather.get_rain_info())
-        value = weather.get_rain_info()
-        element.append(date)
-        element.append(value)
-        base_weather.append(element)
         break
+value = weather.get_rain_info()
+element.append(date)
+element.append(value)
+base_weather.append(element)
 
 with open(f'weather_history.txt', 'w') as file:
     for line in base_weather:
