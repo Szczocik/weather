@@ -2,7 +2,8 @@ from datetime import datetime
 import requests
 import sys
 
-base_weather = {}
+base_weather = []
+
 
 class WeatherForecast:
 
@@ -34,20 +35,34 @@ class WeatherForecast:
             return "Nie będzie padać"
         return "Nie wiem!"
 
-with open(f'weather_history.txt', 'r') as file:
+
+with open(f'weather_history.txt', 'r', encoding='utf8') as file:
     for line in file:
         splitted_line = line.split(';')
         position_1 = splitted_line[0]
         position_2 = splitted_line[1]
 
-        base_weather = {position_1: position_2.replace('\n', '')}
-        print(base_weather)
+        data = [position_1, position_2.replace('\n', '')]
 
+        base_weather.append(data)
 
 weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
-print(weather.get_rain_info())
 
-with open(f'weather_history.txt', 'w') as file:
+date = sys.argv[2]
+element = []
+
+while True:
+    if date == base_weather[0][0]:
+        print(base_weather[0][1])
+        break
+    else:
+        print(weather.get_rain_info())
+        value = weather.get_rain_info()
+        element.append(date)
+        element.append(value)
+        base_weather.append(element)
+        break
+
+with open(f'weather_history.txt', 'w', encoding='utf8') as file:
     for line in base_weather:
         file.write(f'{line[0]}' + ';' + f'{line[1]}' + '\n')
-

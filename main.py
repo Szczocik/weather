@@ -30,13 +30,13 @@ class WeatherForecast:
 
     def get_rain_chance(self, totalprecip_mm):
         if totalprecip_mm > 0.0:
-            return "Bedzie padac"
+            return "Będzie padać"
         elif totalprecip_mm == 0.0:
-            return "Nie bedzie padac"
+            return "Nie będzie padać"
         return "Nie wiem!"
 
 
-with open(f'weather_history.txt', 'r') as file:
+with open(f'weather_history.txt', 'r', encoding='utf8') as file:
     for line in file:
         splitted_line = line.split(';')
         position_1 = splitted_line[0]
@@ -57,12 +57,13 @@ while True:
         break
     else:
         print(weather.get_rain_info())
+        value = weather.get_rain_info()
+        element.append(date)
+        element.append(value)
+        base_weather.append(element)
         break
-value = weather.get_rain_info()
-element.append(date)
-element.append(value)
-base_weather.append(element)
 
-with open(f'weather_history.txt', 'w') as file:
+
+with open(f'weather_history.txt', 'w', encoding='utf8') as file:
     for line in base_weather:
         file.write(f'{line[0]}' + ';' + f'{line[1]}' + '\n')
