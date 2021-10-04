@@ -64,6 +64,6 @@ while True:
         base_weather.append(element)
         break
 print(base_weather)
-with open(f'weather_history.txt', 'a') as file:
+with open(f'weather_history.txt', 'w') as file:
     for line in base_weather:
         file.write(f'{line[0]}' + ';' + f'{line[1]}' + '\n')
