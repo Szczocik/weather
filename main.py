@@ -45,7 +45,6 @@ with open(f'weather_history.txt', 'r') as file:
         data = [position_1, position_2.replace('\n', '')]
 
         base_weather.append(data)
-        print(base_weather)
 
 weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
 
@@ -63,7 +62,7 @@ while True:
         element.append(value)
         base_weather.append(element)
         break
-print(base_weather)
+
 with open(f'weather_history.txt', 'w') as file:
     for line in base_weather:
         file.write(f'{line[0]}' + ';' + f'{line[1]}' + '\n')

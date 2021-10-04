@@ -2,11 +2,11 @@ from datetime import datetime
 import requests
 import sys
 
-base_weather = []
+base_weather = {}
 
 class WeatherForecast:
 
-    BASE_URL = 'https://weatherapi-com.p.rapidapi.com/history.json'
+    BASE_URL = 'http://api.weatherapi.com/v1/history.json'
 
     def __init__(self, api_key, date=str(datetime.today().date())):
         self.api_key = api_key
@@ -40,16 +40,14 @@ with open(f'weather_history.txt', 'r') as file:
         position_1 = splitted_line[0]
         position_2 = splitted_line[1]
 
-        data = [position_1, position_2.replace('\n', '')]
-
-        base_weather.append(data)
+        base_weather = {position_1: position_2.replace('\n', '')}
         print(base_weather)
 
 
 weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
 print(weather.get_rain_info())
 
-with open(f'weather_history.txt', 'a') as file:
+with open(f'weather_history.txt', 'w') as file:
     for line in base_weather:
         file.write(f'{line[0]}' + ';' + f'{line[1]}' + '\n')
 
