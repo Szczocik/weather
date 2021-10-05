@@ -36,6 +36,11 @@ class WeatherForecast:
         return "Nie wiem!"
 
 
+weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
+
+date = sys.argv[2]
+element = []
+
 with open(f'weather_history.txt', 'r', encoding='utf8') as file:
     for line in file:
         splitted_line = line.split(';')
@@ -46,14 +51,11 @@ with open(f'weather_history.txt', 'r', encoding='utf8') as file:
 
         base_weather.append(data)
 
-weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
-
-date = sys.argv[2]
-element = []
 
 while True:
-    if date == base_weather[0][0]:
-        print(base_weather[0][1])
+    if date is base_weather[0]:
+        for date in base_weather[0][0]:
+            print(base_weather[0][1])
         break
     else:
         print(weather.get_rain_info())

@@ -1,7 +1,4 @@
-2021-10-02;Będzie padać
-2021-10-03;Będzie padać
-2021-09-28;Będzie padać
-2021-09-29;Będzie padać
-2021-09-29;Będzie padać
-2021-09-29;Będzie padać
-2021-10-03;Będzie padać
+2021-09-28;Bedzie padac
+2021-09-29;Nie będzie padać
+2021-09-30;Będzie padać
+2021-09-30;Będzie padać

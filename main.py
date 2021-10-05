@@ -13,6 +13,10 @@ class WeatherForecast:
         self.date = date
         self.data = self.get_data()
 
+    def get_date_base_weather(self):
+        for self.date in base_weather[0:][0]:
+            print(base_weather[0][1])
+
     def get_data(self):
         request_url = f'{self.BASE_URL}?key={self.api_key}&q=London&dt={self.date}'
         r = requests.get(request_url)
@@ -43,17 +47,19 @@ with open(f'weather_history.txt', 'r', encoding='utf8') as file:
         position_2 = splitted_line[1]
 
         data = [position_1, position_2.replace('\n', '')]
-
         base_weather.append(data)
+        print(base_weather)
 
 weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
 
 date = sys.argv[2]
 element = []
 
+
+
 while True:
-    if date == base_weather[0][0]:
-        print(base_weather[0][1])
+    if date:
+        print(date)
         break
     else:
         print(weather.get_rain_info())
