@@ -1,4 +1,4 @@
-2021-09-28;Bedzie padac
+2021-09-28;Dupa zbita
 2021-09-29;Nie będzie padać
 2021-09-30;Będzie padać
 2021-09-30;Będzie padać
@@ -10,4 +10,19 @@
 2021-09-29;Nie będzie padać
 2021-09-29;Nie będzie padać
 2021-09-29;Nie będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-06;Nie będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
+2021-10-05;Będzie padać
 2021-10-05;Będzie padać

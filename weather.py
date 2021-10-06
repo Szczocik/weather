@@ -3,6 +3,7 @@ import requests
 import sys
 
 base_weather = []
+element = []
 
 
 class WeatherForecast:
@@ -13,6 +14,14 @@ class WeatherForecast:
         self.api_key = api_key
         self.date = date
         self.data = self.get_data()
+        self.base_weather = base_weather
+        self.element = element
+
+    def __iter__(self):
+        pass
+
+    def __getitem__(self, item):
+        return self.base_weather[item]
 
     def get_data(self):
         request_url = f'{self.BASE_URL}?key={self.api_key}&q=London&dt={self.date}'
@@ -55,12 +64,13 @@ with open(f'weather_history.txt', 'r', encoding='utf8') as file:
 while True:
     element_list = []
     in_file = False
-    for element in base_weather:
-        date_element, weather_info = element
-        if date == date_element:
-            print(weather_info)
-            in_file = True
-            break
+    print(wf[date])
+    # for element in base_weather:
+    #     date_element, weather_info = element
+    #     if date == date_element:
+    #         print(weather_info)
+    #     in_file = True
+    #     break
     if not in_file:
         print(wf.get_rain_info())
         value = wf.get_rain_info()
