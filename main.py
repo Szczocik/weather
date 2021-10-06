@@ -4,6 +4,7 @@ import sys
 
 base_weather = []
 
+
 class WeatherForecast:
 
     BASE_URL = 'http://api.weatherapi.com/v1/history.json'
@@ -12,10 +13,6 @@ class WeatherForecast:
         self.api_key = api_key
         self.date = date
         self.data = self.get_data()
-
-    def get_date_base_weather(self):
-        for self.date in base_weather[0:][0]:
-            print(base_weather[0][1])
 
     def get_data(self):
         request_url = f'{self.BASE_URL}?key={self.api_key}&q=London&dt={self.date}'
@@ -31,13 +28,17 @@ class WeatherForecast:
         totalprecip_mm = float(self.data['forecast']['forecastday'][0]['day']['totalprecip_mm'])
         return self.get_rain_chance(totalprecip_mm)
 
-
     def get_rain_chance(self, totalprecip_mm):
         if totalprecip_mm > 0.0:
             return "Będzie padać"
         elif totalprecip_mm == 0.0:
             return "Nie będzie padać"
         return "Nie wiem!"
+
+
+wf = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
+
+date = sys.argv[2]
 
 
 with open(f'weather_history.txt', 'r', encoding='utf8') as file:
@@ -47,28 +48,26 @@ with open(f'weather_history.txt', 'r', encoding='utf8') as file:
         position_2 = splitted_line[1]
 
         data = [position_1, position_2.replace('\n', '')]
+
         base_weather.append(data)
-        print(base_weather)
-
-weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
-
-date = sys.argv[2]
-element = []
-
 
 
 while True:
-    if date:
-        print(date)
-        break
-    else:
-        print(weather.get_rain_info())
-        value = weather.get_rain_info()
-        element.append(date)
-        element.append(value)
-        base_weather.append(element)
-        break
-
+    element_list = []
+    in_file = False
+    for element in base_weather:
+        date_element, weather_info = element
+        if date == date_element:
+            print(weather_info)
+            in_file = True
+            break
+    if not in_file:
+        print(wf.get_rain_info())
+        value = wf.get_rain_info()
+        element_list.append(date)
+        element_list.append(value)
+        base_weather.append(element_list)
+    break
 
 with open(f'weather_history.txt', 'w', encoding='utf8') as file:
     for line in base_weather:
