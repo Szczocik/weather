@@ -36,7 +36,7 @@ class WeatherForecast:
         return "Nie wiem!"
 
 
-weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
+wf = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
 
 date = sys.argv[2]
 
@@ -62,8 +62,8 @@ while True:
             in_file = True
             break
     if not in_file:
-        print(weather.get_rain_info())
-        value = weather.get_rain_info()
+        print(wf.get_rain_info())
+        value = wf.get_rain_info()
         element_list.append(date)
         element_list.append(value)
         base_weather.append(element_list)
