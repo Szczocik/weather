@@ -39,7 +39,7 @@ class WeatherForecast:
 weather = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
 
 date = sys.argv[2]
-element = []
+
 
 with open(f'weather_history.txt', 'r', encoding='utf8') as file:
     for line in file:
@@ -53,17 +53,22 @@ with open(f'weather_history.txt', 'r', encoding='utf8') as file:
 
 
 while True:
-    if date is base_weather[0]:
-        for date in base_weather[0][0]:
-            print(base_weather[0][1])
-        break
-    else:
+    element_list = []
+    in_file = False
+    for element in base_weather:
+        date_element, weather_info = element
+        if date == date_element:
+            print(weather_info)
+            in_file = True
+            break
+    if not in_file:
         print(weather.get_rain_info())
         value = weather.get_rain_info()
-        element.append(date)
-        element.append(value)
-        base_weather.append(element)
-        break
+        element_list.append(date)
+        element_list.append(value)
+        base_weather.append(element_list)
+    break
+
 with open(f'weather_history.txt', 'w', encoding='utf8') as file:
     for line in base_weather:
         file.write(f'{line[0]}' + ';' + f'{line[1]}' + '\n')
