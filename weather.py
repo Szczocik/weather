@@ -28,6 +28,10 @@ class WeatherForecast:
             if date == date_element:
                 return f'{weather_info}'
 
+    def __iter__(self):
+        for element in self.base_weather:
+            date_element, weather_info = element
+            yield date_element
 
     def get_data(self):
         request_url = f'{self.BASE_URL}?key={self.api_key}&q=London&dt={self.date}'
@@ -49,6 +53,7 @@ class WeatherForecast:
         elif totalprecip_mm == 0.0:
             return "Nie będzie padać"
         return "Nie wiem!"
+
 
 
 wf = WeatherForecast(api_key=sys.argv[1], date=sys.argv[2])
@@ -87,3 +92,6 @@ while True:
 with open(f'weather_history.txt', 'w', encoding='utf8') as file:
     for line in base_weather:
         file.write(f'{line[0]}' + ';' + f'{line[1]}' + '\n')
+
+for date in wf:
+    print(date)
