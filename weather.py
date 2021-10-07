@@ -21,7 +21,11 @@ class WeatherForecast:
         pass
 
     def __getitem__(self, item):
-        return self.base_weather[item]
+        for element in self.base_weather:
+            date_element, weather_info = element
+            if date == date_element:
+                return f'{weather_info}'
+
 
     def get_data(self):
         request_url = f'{self.BASE_URL}?key={self.api_key}&q=London&dt={self.date}'
@@ -65,12 +69,8 @@ while True:
     element_list = []
     in_file = False
     print(wf[date])
-    # for element in base_weather:
-    #     date_element, weather_info = element
-    #     if date == date_element:
-    #         print(weather_info)
-    #     in_file = True
-    #     break
+    in_file = True
+
     if not in_file:
         print(wf.get_rain_info())
         value = wf.get_rain_info()
