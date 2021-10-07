@@ -17,8 +17,10 @@ class WeatherForecast:
         self.base_weather = base_weather
         self.element = element
 
-    def __iter__(self):
-        pass
+    def items(self):
+        for element in self.base_weather:
+            date_element, weather_info = element
+            yield (date_element, weather_info)
 
     def __getitem__(self, item):
         for element in self.base_weather:
@@ -64,7 +66,8 @@ with open(f'weather_history.txt', 'r', encoding='utf8') as file:
 
         base_weather.append(data)
 
-
+tupla = wf.items()
+print(tupla)
 while True:
     element_list = []
     in_file = False
@@ -78,6 +81,8 @@ while True:
         element_list.append(value)
         base_weather.append(element_list)
     break
+
+
 
 with open(f'weather_history.txt', 'w', encoding='utf8') as file:
     for line in base_weather:
